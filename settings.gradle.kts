@@ -21,6 +21,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "yet-another-dynamic-onboarding"
+rootProject.name = "YADO"
 include(":yado")
 include(":sample")
