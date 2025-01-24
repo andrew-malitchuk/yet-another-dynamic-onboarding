@@ -40,11 +40,10 @@ fun Modifier.isOnTop(
  *                     position in the root layout and its size.
  * @return A [Modifier] that observes the composable's global position and size.
  */
-fun Modifier.captureYadoLocation(onPositioned: (YadoLocation) -> Unit): Modifier =
-    this.then(
-        Modifier.onGloballyPositioned { coordinates: LayoutCoordinates ->
-            val position = coordinates.positionInRoot()
-            val size = coordinates.size
-            onPositioned(YadoLocation(position, size))
-        },
-    )
+fun Modifier.captureYadoLocation(onPositioned: (YadoLocation) -> Unit): Modifier = this.then(
+    Modifier.onGloballyPositioned { coordinates: LayoutCoordinates ->
+        val position = coordinates.positionInRoot()
+        val size = coordinates.size
+        onPositioned(YadoLocation(position, size))
+    },
+)
