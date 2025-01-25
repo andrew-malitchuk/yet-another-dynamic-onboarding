@@ -18,13 +18,11 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun DemoContent(
-    yadoState: YadoState = rememberYadoState(),
-    block: @Composable (Modifier) -> Unit
+    yadoState: YadoState = rememberYadoState(), block: @Composable (Modifier) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         block(Modifier.weight(1f))
         Row(
@@ -33,46 +31,30 @@ fun DemoContent(
                 .wrapContentHeight(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Button(
-                modifier = Modifier
-                    .weight(1f),
-                onClick = {
-                    yadoState.apply {
-                        init()
-                    }
+            Button(modifier = Modifier.weight(1f), onClick = {
+                yadoState.apply {
+                    init()
                 }
-            ) {
+            }) {
                 Text(text = "Init")
             }
-            Button(
-                modifier = Modifier
-                    .weight(1f),
-                onClick = {
-                    yadoState.apply {
-                        start()
-                    }
+            Button(modifier = Modifier.weight(1f), onClick = {
+                yadoState.apply {
+                    start()
                 }
-            ) {
+            }) {
                 Text(text = "Start")
             }
-            Button(
-                modifier = Modifier
-                    .weight(1f),
-                onClick = {
-                    coroutineScope.launch {
-                        yadoState.next()
-                    }
+            Button(modifier = Modifier.weight(1f), onClick = {
+                coroutineScope.launch {
+                    yadoState.next()
                 }
-            ) {
+            }) {
                 Text(text = "Next")
             }
-            Button(
-                modifier = Modifier
-                    .weight(1f),
-                onClick = {
-                    yadoState.finish()
-                }
-            ) {
+            Button(modifier = Modifier.weight(1f), onClick = {
+                yadoState.finish()
+            }) {
                 Text(text = "Stop")
             }
         }
