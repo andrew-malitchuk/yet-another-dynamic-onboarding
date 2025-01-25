@@ -24,7 +24,7 @@ import dev.yado.lib.core.model.blindSpot
 import dev.yado.lib.source.state.rememberYadoState
 import kotlinx.coroutines.launch
 
-class SampleActivity: ComponentActivity() {
+class SampleActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
