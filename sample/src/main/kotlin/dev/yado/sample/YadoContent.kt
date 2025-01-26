@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,15 +22,13 @@ import dev.yado.lib.core.composable.layout.YadoScreen
 import dev.yado.lib.core.composable.widget.YadoBlock
 import dev.yado.lib.core.composable.widget.YadoPage
 import dev.yado.lib.core.model.YadoPosition
-import dev.yado.lib.core.model.background
-import dev.yado.lib.core.model.blindSpot
 import dev.yado.lib.source.state.YadoState
 import dev.yado.lib.source.state.rememberYadoState
 import kotlinx.coroutines.launch
 
 @Composable
 fun YadoContent(
-    modifier: Modifier=Modifier,
+    modifier: Modifier = Modifier,
     yadoState: YadoState = rememberYadoState()
 ) {
 
