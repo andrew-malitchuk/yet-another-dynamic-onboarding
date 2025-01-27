@@ -26,11 +26,11 @@ fun YadoBlock(
 ) {
     Box(
         modifier =
-            modifier
-                .captureYadoLocation {
-                    // Registers the block's position in the state when its location is determined
-                    state.addItem(position, it)
-                },
+        modifier
+            .captureYadoLocation {
+                // Registers the block's position in the state when its location is determined
+                state.addItem(position, it)
+            },
     ) {
         block()
     }
