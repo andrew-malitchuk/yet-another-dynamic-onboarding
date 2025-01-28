@@ -47,16 +47,16 @@ fun YadoPage(
 
     Box(
         modifier =
-            modifier
-                .fillMaxSize()
-                .graphicsLayer {
-                    yadoState.pagerState?.let {
-                        val pageOffset =
-                            it.calculateCurrentOffsetForPage(pageState.currentPage)
-                        translationX = pageOffset * size.width
-                        alpha = 1 - pageOffset.absoluteValue
-                    }
-                },
+        modifier
+            .fillMaxSize()
+            .graphicsLayer {
+                yadoState.pagerState?.let {
+                    val pageOffset =
+                        it.calculateCurrentOffsetForPage(pageState.currentPage)
+                    translationX = pageOffset * size.width
+                    alpha = 1 - pageOffset.absoluteValue
+                }
+            },
     ) {
         // Display a blurred, tinted screenshot as the background
         yadoState.screenCapture.value?.getOrNull()?.let {
@@ -66,9 +66,9 @@ fun YadoPage(
             ).getOrNull()?.asImageBitmap()?.let { bitmap ->
                 Image(
                     modifier =
-                        Modifier
-                            .fillMaxSize()
-                            .blur(yadoState.background.blur),
+                    Modifier
+                        .fillMaxSize()
+                        .blur(yadoState.background.blur),
                     bitmap = bitmap,
                     contentDescription = null,
                 )
@@ -82,16 +82,16 @@ fun YadoPage(
             if (bitmap != null && position != null) {
                 Column(
                     modifier =
-                        Modifier
-                            .offset {
-                                IntOffset(
-                                    (position.x.toInt()  - yadoState.blindSpot.padding.toPx()).toInt(),
-                                    ((position.y.toInt() - yadoState.blindSpot.padding.toPx()).toInt()),
-                                )
-                            }
-                            .isOnTop {
-                                isOnTop.value = it
-                            },
+                    Modifier
+                        .offset {
+                            IntOffset(
+                                (position.x.toInt() - yadoState.blindSpot.padding.toPx()).toInt(),
+                                ((position.y.toInt() - yadoState.blindSpot.padding.toPx()).toInt()),
+                            )
+                        }
+                        .isOnTop {
+                            isOnTop.value = it
+                        },
                 ) {
                     Image(
                         modifier = Modifier,
@@ -111,11 +111,15 @@ fun YadoPage(
         // Render the action block aligned based on the prompt's position
         Box(
             modifier =
-                Modifier
-                    .align(
-                        if (isOnTop.value) Alignment.BottomStart else Alignment.TopStart,
-                    )
-                    .then(Modifier.statusBarsPadding().navigationBarsPadding()),
+            Modifier
+                .align(
+                    if (isOnTop.value) Alignment.BottomStart else Alignment.TopStart,
+                )
+                .then(
+                    Modifier
+                        .statusBarsPadding()
+                        .navigationBarsPadding()
+                ),
         ) {
             actionBlock()
         }
