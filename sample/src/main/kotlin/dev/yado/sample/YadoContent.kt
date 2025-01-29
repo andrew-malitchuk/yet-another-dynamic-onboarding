@@ -28,128 +28,96 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun YadoContent(
-    modifier: Modifier = Modifier,
-    yadoState: YadoState = rememberYadoState()
+    modifier: Modifier = Modifier, yadoState: YadoState = rememberYadoState()
 ) {
 
     val coroutineScope = rememberCoroutineScope()
 
-    YadoScreen(
-        modifier = modifier,
-        state = yadoState,
-        loading = {
-            Text(text = "loading")
-        },
-        page = {
-            YadoPage(
-                modifier = Modifier
-                    .fillMaxSize(),
-                yadoState = yadoState,
-                pageState = it,
-                promptBlock = {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        Text(
-                            text = "^",
-                            modifier = Modifier
-                                .offset {
-                                    IntOffset(
-                                        x = it,
-                                        y = 0
-                                    )
-                                }
-                        )
-                        Text(
-                            text = yadoState.currentPosition.toString()
-                        )
-                    }
-                },
-                actionBlock = {
-                    Button(
-                        onClick = {
-                            coroutineScope.launch {
-                                yadoState.next()
-                            }
-                        }
-                    ) {
-                        Text("foobar")
-                    }
+    YadoScreen(modifier = modifier, state = yadoState, loading = {
+        Text(text = "loading")
+    }, page = {
+        YadoPage(modifier = Modifier.fillMaxSize(),
+            yadoState = yadoState,
+            pageState = it,
+            promptBlock = {
+                Column(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "^", modifier = Modifier.offset {
+                            IntOffset(
+                                x = it, y = 0
+                            )
+                        })
+                    Text(
+                        text = yadoState.currentPosition.toString()
+                    )
                 }
-            )
-        },
-        content = {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.White)
-                    .statusBarsPadding()
+            },
+            actionBlock = {
+                Button(onClick = {
+                    coroutineScope.launch {
+                        yadoState.next()
+                    }
+                }) {
+                    Text("foobar")
+                }
+            })
+    }, content = {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White)
+                .statusBarsPadding()
+        ) {
+            YadoBlock(
+                position = YadoPosition(0), state = yadoState
             ) {
-                YadoBlock(
-                    position = YadoPosition(0),
-                    state = yadoState
-                ) {
-                    Text(
-                        modifier = Modifier,
-                        text = "foobar3"
-                    )
-                }
-                Spacer(
-                    modifier = Modifier
-                        .height(64.dp)
-                )
-                Box(
-                    modifier = Modifier
-                ) {
-                    YadoBlock(
-                        position = YadoPosition(1),
-                        state = yadoState
-                    ) {
-                        Button(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp),
-                            onClick = {
-
-                            }
-                        ) {
-                            Text("Hello world")
-                        }
-                    }
-                }
-                YadoBlock(
-                    position = YadoPosition(3),
-                    state = yadoState
-                ) {
-                    Text(
-                        modifier = Modifier,
-                        text = "Hello world"
-                    )
-                }
                 Text(
-                    modifier = Modifier,
-                    text = "Hello world"
-                )
-                YadoBlock(
-                    position = YadoPosition(2),
-                    state = yadoState
-                ) {
-                    Text(
-                        modifier = Modifier,
-                        text = "foobar2"
-                    )
-                }
-                Text(
-                    modifier = Modifier,
-                    text = "Hello world"
-                )
-                Text(
-                    modifier = Modifier,
-                    text = "Hello world"
+                    modifier = Modifier, text = "foobar3"
                 )
             }
+            Spacer(
+                modifier = Modifier.height(64.dp)
+            )
+            Box(
+                modifier = Modifier
+            ) {
+                YadoBlock(
+                    position = YadoPosition(1), state = yadoState
+                ) {
+                    Button(modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp), onClick = {
+
+                    }) {
+                        Text("Hello world")
+                    }
+                }
+            }
+            YadoBlock(
+                position = YadoPosition(3), state = yadoState
+            ) {
+                Text(
+                    modifier = Modifier, text = "Hello world"
+                )
+            }
+            Text(
+                modifier = Modifier, text = "Hello world"
+            )
+            YadoBlock(
+                position = YadoPosition(2), state = yadoState
+            ) {
+                Text(
+                    modifier = Modifier, text = "foobar2"
+                )
+            }
+            Text(
+                modifier = Modifier, text = "Hello world"
+            )
+            Text(
+                modifier = Modifier, text = "Hello world"
+            )
         }
-    )
+    })
 
 }
