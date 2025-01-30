@@ -61,11 +61,11 @@ fun YadoScreenshotBox(
 
     Box(
         modifier =
-            modifier
-                .onGloballyPositioned {
-                    // Update composable bounds whenever the position changes
-                    composableBounds = it.boundsInWindow()
-                },
+        modifier
+            .onGloballyPositioned {
+                // Update composable bounds whenever the position changes
+                composableBounds = it.boundsInWindow()
+            },
     ) {
         content()
     }
