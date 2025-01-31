@@ -46,13 +46,11 @@ fun YadoPage(
     val isOnTop = remember { mutableStateOf(false) }
 
     Box(
-        modifier =
-        modifier
+        modifier = modifier
             .fillMaxSize()
             .graphicsLayer {
                 yadoState.pagerState?.let {
-                    val pageOffset =
-                        it.calculateCurrentOffsetForPage(pageState.currentPage)
+                    val pageOffset = it.calculateCurrentOffsetForPage(pageState.currentPage)
                     translationX = pageOffset * size.width
                     alpha = 1 - pageOffset.absoluteValue
                 }
@@ -65,8 +63,7 @@ fun YadoPage(
                 yadoState.background.color,
             ).getOrNull()?.asImageBitmap()?.let { bitmap ->
                 Image(
-                    modifier =
-                    Modifier
+                    modifier = Modifier
                         .fillMaxSize()
                         .blur(yadoState.background.blur),
                     bitmap = bitmap,
@@ -81,8 +78,7 @@ fun YadoPage(
             val position = yadoState.allItems[currentPosition]?.offset
             if (bitmap != null && position != null) {
                 Column(
-                    modifier =
-                    Modifier
+                    modifier = Modifier
                         .offset {
                             IntOffset(
                                 (position.x.toInt() - yadoState.blindSpot.padding.toPx()).toInt(),
@@ -110,15 +106,12 @@ fun YadoPage(
 
         // Render the action block aligned based on the prompt's position
         Box(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .align(
                     if (isOnTop.value) Alignment.BottomStart else Alignment.TopStart,
                 )
                 .then(
-                    Modifier
-                        .statusBarsPadding()
-                        .navigationBarsPadding()
+                    Modifier.statusBarsPadding().navigationBarsPadding()
                 ),
         ) {
             actionBlock()
